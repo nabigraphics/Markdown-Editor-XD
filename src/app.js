@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 //import redux modules
 import { createStore, applyMiddleware, compose } from 'redux';
+import persistState from 'redux-localstorage';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
@@ -16,7 +17,7 @@ import {Provider} from 'react-redux';
 import Header from './containers/header';
 import Content from './containers/content';
 
-const store = createStore(reducers,compose(applyMiddleware(thunk),devToolsEnhancer()));
+const store = createStore(reducers,compose(persistState(),applyMiddleware(thunk),devToolsEnhancer()));
 
 class App extends Component {
     render() {
