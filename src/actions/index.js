@@ -1,10 +1,38 @@
 //import actiontypes.
 import * as types from './ActionTypes';
 
-//content actions
-export function change_content(content) {
+//change content
+export function change_content(page,content) {
   return {
       type: types.CONTENT_CHANGE,
+      page,
       content
   };
+}
+export function edit_content_title(page,title) {
+  return {
+    type: types.CONTENT_EDIT_TITLE,
+    page,
+    title
+  }
+}
+//change editpage
+export function change_editpage(page){
+  return {
+    type: types.EDITPAGE_CHANGE,
+    page
+  }
+}
+//add docunemt
+export function add_document(){
+  return {
+    type: types.DOCUMENT_ADD
+  }
+}
+//remove docunemt
+export function remove_document(page){
+  return {
+    type: types.DOCUMENT_REMOVE,
+    page
+  }
 }
