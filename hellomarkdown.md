@@ -1,6 +1,8 @@
 ![markdown_logo](https://upload.wikimedia.org/wikipedia/commons/4/48/Markdown-mark.svg)  
+
 **Hello Markdown!**
-=== 
+======= 
+
 마크다운을 처음 접하시나요?  
 하단에 적혀져있는 유용한 강좌들을 한번 읽어보세요!  
 
