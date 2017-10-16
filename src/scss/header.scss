@@ -1,9 +1,50 @@
+@import './document';
+
 .header{
     background:$primary_color;
     color:$font_light_color;
     // height:60px;
     display: flex;
-    // justify-content:center;
+    justify-content: space-between;
     align-items: center;
-    padding:20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding:14px;
+    span{
+        white-space: nowrap;
+    }
+    .hambuger{
+        display: none;
+    }
+    .nav_bg{
+        overflow-x: auto;
+    }
+}
+
+@media only screen and (max-width :575px) {
+    .header{
+        // flex-direction:column;
+        .hambuger{
+            cursor: pointer;
+            display: block;
+        }
+        .nav_bg{
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            overflow: hidden;
+            margin: 0;
+            top: 0;
+            right: 0;
+            padding: 0;
+            background: rgba($bg_color,0.85);
+        }
+        .nav_bg.active{
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
 }
