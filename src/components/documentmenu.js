@@ -80,7 +80,6 @@ class Documentmenu extends Component {
             return;
         }
         const check = ReactDOM.findDOMNode(this);
-        console.log(check.contains(e.target));
         if(check.contains(e.target) || e.target == this.props.target){
             return;
         }
