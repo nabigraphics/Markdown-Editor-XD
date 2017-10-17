@@ -1,14 +1,47 @@
 import * as types from '../actions/ActionTypes';
-// import { Map, List } from 'immutable';
-// const initialState =  Map({
-//     content:List([]),
-//     editpage:0
-// });
 const initialState = {
   content:[{
-    filename:'문서_0',
-    content:''
-  }],
+    filename:'Hello Markdown!',
+    content:`
+![markdown_logo](https://upload.wikimedia.org/wikipedia/commons/4/48/Markdown-mark.svg)  
+
+**Hello Markdown!**
+======= 
+
+
+안녕하세요! **마크다운**을 처음 접하시나요?  
+하단에 적혀져있는 유용한 강좌들을 한번 읽어보세요!  
+
+----
+
+
+[ihoneymon님의 마크다운 사용법 글](https://gist.github.com/ihoneymon/652be052a0727ad59601)  
+[Ji Heon Kim님의 허니몬의 마크다운 사용기](https://www.slideshare.net/ihoneymon/ss-40575068)`
+  },
+  {
+    filename:'readme',
+    content:`
+Markdown Editor
+===
+![preview](https://github.com/nabigraphics/fd-test/blob/master/preview.png?raw=true)  
+
+무겁지않고~~(...?)~~ 심플한 react 마크다운 에디터 입니다.  
+
+---
+
+### 사용한 기술(Stack)
+>react  
+react-remarkable  
+react-redux  
+react-splitter-layout  
+redux  
+redux-localstorage  
+redux-devtools-extension  
+babel  
+webpack  
+sass  `
+  }
+  ],
   editpage:0,
   prevpage:0,
   selection:{
@@ -42,7 +75,19 @@ export default function (state = initialState, action){
         content:state.content.concat({
           filename:'문서_' + state.content.length,
           content:''
-        })
+        }),
+        editpage:state.content.length,
+        prevpage:state.editpage
+      }
+    case types.DOCUMENT_LOAD:
+      return {
+        ...state,
+        content:state.content.concat({
+          filename:action.filename,
+          content:action.content
+        }),
+        editpage:state.content.length,
+        prevpage:state.editpage
       }
     case types.DOCUMENT_REMOVE:
       if(state.content.length === 1){
@@ -73,7 +118,7 @@ export default function (state = initialState, action){
       }
     case types.WYSIWYG_INSERT:
       let before_content = state.content[action.page].content;
-      let insert = before_content.substring(0,action.offset.startOffset) + action.target + before_content.substring(action.offset.startOffset,action.offset.endOffset) + action.target + before_content.substring(action.offset.endOffset,before_content.length);
+      let insert = before_content.substring(0,action.offset.startOffset) + action.content + before_content.substring(action.offset.endOffset,before_content.length);
       return {
         ...state,
         content:state.content.map((content,i) => i === action.page ? {...content,content:insert} : content )

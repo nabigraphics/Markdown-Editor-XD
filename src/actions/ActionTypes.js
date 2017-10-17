@@ -6,6 +6,7 @@ export const EDITPAGE_CHANGE = "EDITPAGE_CHANGE";
 // document actions.
 export const DOCUMENT_ADD = "DOCUMENT_ADD";
 export const DOCUMENT_REMOVE = "DOCUMENT_REMOVE";
+export const DOCUMENT_LOAD = "DOCUMENT_LOAD";
 // selection actions.
 export const SELECTION_CHANGE = "SELECTION_CHANGE";
 // wysiwyg actions.
