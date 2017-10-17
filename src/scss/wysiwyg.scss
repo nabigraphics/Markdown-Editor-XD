@@ -49,4 +49,15 @@ $wiziwig_radius:4px;
             background:rgba($font_light_color,0.85);
         }
     }
+    .wysiwyg_bt.right {
+        border:1px solid rgba($font_light_color,0.5);
+        background:$third_color;
+        color:$font_light_color;
+        &:hover{
+            background:rgba($secend_color,0.85);
+        }
+        &:first-child{
+            border-right:0px;
+        }
+    }
 }

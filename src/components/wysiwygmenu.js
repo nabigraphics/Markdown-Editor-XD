@@ -98,11 +98,11 @@ class Wysiwygmenu extends Component {
             </ul>
             <ul className="wysiwygmenu">
                 <li>
-                <label style={{"margin":"0"}} className="wysiwyg_bt" htmlFor="import_file">
+                <label style={{"margin":"0"}} className="wysiwyg_bt right" htmlFor="import_file">
                     <input ref={r => {this.import_refs = r}} style={{"display":"none"}} id="import_file" type="file" accept=".md" onChange={this.queueFile}/>
                     <i className="material-icons" style={{"fontSize":"12pt"}} title="Import File">file_upload</i>
                 </label>
-                <i className="material-icons wysiwyg_bt" onClick={this.onDownload} title="Export File">save</i>
+                <i className="material-icons wysiwyg_bt right" onClick={this.onDownload} title="Export File">save</i>
                 </li>
             </ul>
             </div>
