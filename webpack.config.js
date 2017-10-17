@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 module.exports = {
     entry:{
-        bundle:['./src/app.js','./src/scss/style.scss']
+        bundle:['./src/app.js','./src/scss/style.scss','./src/scss/react-notipoix3.scss']
     },
     output:{
         path:'/dist',
@@ -51,7 +52,8 @@ module.exports = {
         ]
     },
     plugins:[
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new LodashModuleReplacementPlugin()
     ],  
     resolve:{
         modules:['node_modules'],
