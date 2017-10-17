@@ -9,11 +9,18 @@ class Editor extends Component {
         this.getSelection = this.getSelection.bind(this);
         this.selectionEvent = this.selectionEvent.bind(this);
         this.state = {
-            selEventList:['click','select','focus','keyup']
+            selEventList:['click','select','focus','keyup'],
+            selection:{
+                startOffset:0,
+                endOffset:0
+            }
         };
     }
     selectionEvent(){
-        this.props.selectionchange(this.getSelection(this.editarea));
+        let temp_selection = this.getSelection(this.editarea);
+        if(temp_selection.startOffset !== this.props.offset.startOffset || temp_selection.endOffset !== this.props.offset.endOffset){
+            this.props.selectionchange(this.getSelection(this.editarea));   
+        }
     }
     getSelection(e){
         return {
@@ -47,7 +54,8 @@ class Editor extends Component {
 const stateToProps = (state) => {
     return {
         mdcontent:state.mdcontent.content,
-        editpage:state.mdcontent.editpage
+        editpage:state.mdcontent.editpage,
+        offset:state.mdcontent.selection
     }
 }
 
