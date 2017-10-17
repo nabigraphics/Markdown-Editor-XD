@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Editor from '../components/editor';
 import MDrender from '../components/mdrender';
 import Wysiwygmenu from '../components/wysiwygmenu';
@@ -22,6 +21,7 @@ class Content extends Component {
         window.removeEventListener('resize',this.handleResponsive);
     }
     handleResponsive(){
+        //반응형 윈도우 사이즈 체크
         if(window.innerWidth <= 575){
             this.setState({
                 responsive:true

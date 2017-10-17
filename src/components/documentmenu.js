@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+
+// 문서 아이템을 관리하는 컴포넌트.
+// 문서 추가 수정 및 삭제 + 문서 이름 변경
 class DocumentmenuItem extends Component {
     constructor(props){
         super(props);

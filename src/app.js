@@ -5,8 +5,7 @@ import { Notipoix3 } from './components/react-notipoix3';
 //import redux modules
 import { createStore, applyMiddleware, compose } from 'redux';
 import persistState from 'redux-localstorage';
-import { devToolsEnhancer } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+// import { devToolsEnhancer } from 'redux-devtools-extension';
 import reducers from './reducers';
 import * as actions from './actions';
 
@@ -17,9 +16,14 @@ import {Provider} from 'react-redux';
 import Header from './containers/header';
 import Content from './containers/content';
 
-const store = createStore(reducers,compose(persistState(),applyMiddleware(thunk),devToolsEnhancer()));
+// develop
+// const store = createStore(reducers,compose(persistState(),devToolsEnhancer()));
+const store = createStore(reducers,compose(persistState()));
 
 class App extends Component {
+    componentDidMount(){
+        console.log("%c * 해당 프로젝트는 'Google Chrome' 브라우저에 최적화 되어있습니다.","color:red;")
+    }
     render() {
         return (
             <div className="app_layout">
