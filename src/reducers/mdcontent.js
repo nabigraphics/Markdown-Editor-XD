@@ -11,6 +11,10 @@ const initialState = {
   }],
   editpage:0,
   prevpage:0,
+  selection:{
+    startOffset:0,
+    endOffset:0
+  }
 }
 export default function (state = initialState, action){
   switch(action.type){
@@ -59,32 +63,22 @@ export default function (state = initialState, action){
           prevpage:0
         }
       }
+    case types.SELECTION_CHANGE:
+      return {
+        ...state,
+        selection:{
+          startOffset:action.offset.startOffset,
+          endOffset:action.offset.endOffset,
+        }
+      }
+    case types.WYSIWYG_INSERT:
+      let before_content = state.content[action.page].content;
+      let insert = before_content.substring(0,action.offset.startOffset) + action.target + before_content.substring(action.offset.startOffset,action.offset.endOffset) + action.target + before_content.substring(action.offset.endOffset,before_content.length);
+      return {
+        ...state,
+        content:state.content.map((content,i) => i === action.page ? {...content,content:insert} : content )
+      }
     default:
       return state;
   }
 }
-// export default function (state = initialState, action){
-//   const content_get = state.get('content');
-//   const editpage_get = state.get('editpage');
-//   // console.log(content_get.toJS());
-//   switch(action.type){
-//     case types.CONTENT_CHANGE :
-//       // localStorage.setItem('content',content_get.update(editpage_get,(res) => res.set('content',action.content)));
-//       return state.set('content',content_get.update(editpage_get,(res) => res.set('content',action.content)));
-//     case types.CONTENT_LOAD :
-//       return state.set('content',List(action.content));
-//     case types.CONTENT_INIT :
-//       // console.log(List([Map({filename:'untitle_0',content:'# hello markdown!'})]).toArray());
-//       // localStorage.setItem('editpage',0);
-//       // localStorage.setItem('content',List([Map({filename:'untitle_0',content:'# hello markdown!'})]).toJS());
-//       return state.set('content',List([Map({filename:'untitle_0',content:'# hello markdown!'})]))
-
-//     case types.EDITPAGE_LOAD :
-//       return state.set('editpage',Number(action.page));
-//     case types.EDITPAGE_CHANGE :
-//       // localStorage.setItem('editpage',action.page);
-//       return state.set('editpage',action.page);
-//     default :
-//       return state;
-//   }
-// }

@@ -8,7 +8,8 @@ class Header extends Component {
         }
         this.handleClick = this.handleClick.bind(this);
     }
-    handleClick(){
+    handleClick(e){
+        e.preventDefault();
         this.setState({
             isOpen:!this.state.isOpen
         });

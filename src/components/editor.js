@@ -6,23 +6,32 @@ class Editor extends Component {
     constructor(props){
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.getSelection = this.getSelection.bind(this);
+        this.selectionEvent = this.selectionEvent.bind(this);
+        this.state = {
+            selEventList:['click','select','focus','keyup']
+        };
+    }
+    selectionEvent(){
+        this.props.selectionchange(this.getSelection(this.editarea));
+    }
+    getSelection(e){
+        return {
+            startOffset:e.selectionStart,
+            endOffset:e.selectionEnd
+        }
     }
     componentDidMount(){
-        // // if(localStorage.getItem('redux')){
-        // //     // console.log("있어!");
-        // //     this.props.editpageload(localStorage.getItem('editpage'));            
-        // //     this.props.contentload(localStorage.getItem('content'));
-        // // }else{
-        // //     this.props.contentinit();
-        // //     // console.log("없어!");
-        // // }
-        // if(localStorage.getItem('redux')){
-
-        // }else{
-        //     console.log("gogo!");
-        //     this.props.contentinit();
-        // }
-        // // this.props.contentinit();
+        const addEvent = () => this.state.selEventList.map((eventType) => {
+            this.editarea.addEventListener(eventType,this.selectionEvent);
+        })
+        addEvent();
+    }
+    componentWillUnmount(){
+        const removeEvent = () => this.state.selEventList.map((eventType) => {
+            this.editarea.removeEventListener(eventType,this.selectionEvent);
+        })
+        removeEvent();
     }
     handleChange(e){
         this.props.contentchange(this.props.editpage,e.target.value);
@@ -30,8 +39,7 @@ class Editor extends Component {
     render() {
         return (
             <div className={this.props.className}>
-                {/* <textarea onChange={this.handleChange} type="textarea" value={this.props.mdcontent.getIn([this.props.editpage,'content'])} /> */}
-                {<textarea onChange={this.handleChange} type="textarea" value={this.props.mdcontent[this.props.editpage].content} />}
+                {<textarea ref={r => { this.editarea = r }} onChange={this.handleChange} type="textarea" value={this.props.mdcontent[this.props.editpage].content} />}
             </div>
         );
     }
@@ -42,18 +50,14 @@ const stateToProps = (state) => {
         editpage:state.mdcontent.editpage
     }
 }
-// const stateToProps = (state) => {
-//     return {
-//         mdcontent:state.mdcontent.get('content'),
-//         editpage:state.mdcontent.get('editpage')
-//     }
-// }
+
 const dispatchToProps = (dispatch) => {
     return {
         contentchange:(page,content) => {dispatch(actions.change_content(page,content))},
         contentload:(content) => {dispatch(actions.load_content(content))},
         contentinit:() => {dispatch(actions.init_content())},
-        editpageload:(page) => {dispatch(actions.load_editpage(page))}
+        editpageload:(page) => {dispatch(actions.load_editpage(page))},
+        selectionchange:(offset) => {dispatch(actions.change_selection(offset))}
     }
 }
 

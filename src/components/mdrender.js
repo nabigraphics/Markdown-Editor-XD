@@ -6,9 +6,7 @@ class MDrender extends Component {
     render() {
         return (
             <div className={this.props.className}>
-              {/* <ReactMarkdown source={this.props.mdcontent.getIn([this.props.editpage,'content'])} /> */}
-              {/* {<ReactMarkdown source={this.props.mdcontent[this.props.editpage].content}/>} */}
-              <Markdown className="markdown-body" source={this.props.mdcontent[this.props.editpage].content} />
+              <Markdown source={this.props.mdcontent[this.props.editpage].content} />
             </div>
         );
     }
@@ -19,15 +17,5 @@ const stateToProps = (state) => {
         editpage:state.mdcontent.editpage
     }
 }
-// const stateToProps = (state) => {
-//     return {
-//         mdcontent:state.mdcontent.get('content'),
-//         editpage:state.mdcontent.editpage
-//     }
-// }
-const dispatchToProps = (dispatch) => {
-    return {
-        
-    }
-}
-export default connect(stateToProps,dispatchToProps)(MDrender);
+
+export default connect(stateToProps,false)(MDrender);

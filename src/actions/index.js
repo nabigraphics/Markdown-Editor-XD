@@ -36,3 +36,19 @@ export function remove_document(page){
     page
   }
 }
+//change selection
+export function change_selection(offset){
+  return {
+    type: types.SELECTION_CHANGE,
+    offset
+  }
+}
+//insert wysiwyg
+export function insert_wysiwyg(page,target,offset){
+  return{
+    type: types.WYSIWYG_INSERT,
+    page,
+    target,
+    offset
+  }
+}
