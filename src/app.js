@@ -1,7 +1,7 @@
 //import react modules
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+import { Notipoix3 } from './components/react-notipoix3';
 //import redux modules
 import { createStore, applyMiddleware, compose } from 'redux';
 import persistState from 'redux-localstorage';
@@ -23,6 +23,7 @@ class App extends Component {
     render() {
         return (
             <div className="app_layout">
+                <Notipoix3 position="bottom-right"/>
                 <Header/>
                 <Content/>
             </div>
