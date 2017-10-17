@@ -1,6 +1,6 @@
 Markdown Editor
 ===
-![preview](https://github.com/nabigraphics/fd-test/blob/master/preview.png?raw=true)  
+![preview](preview.png)  
 
 무겁지않고~~(...?)~~ 심플한 react 마크다운 에디터 입니다.  
 
