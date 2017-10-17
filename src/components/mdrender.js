@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Markdown from 'react-remarkable';
+import Marked from 'marked';
 
 class MDrender extends Component {
     render() {
-        return (
-            <div className={this.props.className}>
-              <Markdown source={this.props.mdcontent[this.props.editpage].content} />
-            </div>
-        );
+        var markdown = Marked(this.props.mdcontent[this.props.editpage].content);
+        return <div className="render_view" dangerouslySetInnerHTML={{__html:markdown}} />;
     }
 }
 const stateToProps = (state) => {
