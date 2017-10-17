@@ -1,6 +1,13 @@
 $wiziwig_radius:4px;
-
-.wiziwigmenu{
+.wysiwyg{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background:$third_color;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.wysiwygmenu{
     list-style: none;
     top:0;
     left:0;
@@ -10,9 +17,6 @@ $wiziwig_radius:4px;
     display: flex;
     align-items: center;
     background:$third_color;
-    overflow-x: auto;
-    overflow-y: hidden;
-
     li{
         display: flex;
         white-space: nowrap;
@@ -20,29 +24,27 @@ $wiziwig_radius:4px;
         cursor: pointer;
         margin:0px 7px 0px 0px;
         border-radius: 0;
-        .wiziwig_bt:first-child{
+        .wysiwyg_bt:first-child{
             border-top-left-radius:$wiziwig_radius;
             border-bottom-left-radius:$wiziwig_radius;
         }
-        .wiziwig_bt:last-child{
+        .wysiwyg_bt:last-child{
             border-top-right-radius:$wiziwig_radius;
             border-bottom-right-radius:$wiziwig_radius;
         }
     }
-    .wiziwig_bt{
+    .wysiwyg_bt{
         display:flex;
         outline:0;
         border:0;
         margin:0;
         padding:14px;
+        font-size:12pt;
         cursor: pointer;
         border-radius: 0;
         background:$font_light_color;
         color:$font_dark_color;
         transition: background 150ms cubic-bezier(0.455, 0.030, 0.515, 0.955);
-        i{
-            font-size:12pt;
-        }
         &:hover{
             background:rgba($font_light_color,0.85);
         }
