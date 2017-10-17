@@ -41,5 +41,5 @@ etc...
 ---
 | chrome | safari | IE | Firefox |  
 |---|---|---|---|
-| o | x (**error**) 수정 필요 | ? | ? |
+| o | x (**error**) 수정 필요 | ? | x (ㅠㅠㅠㅠ..) |
 ---
