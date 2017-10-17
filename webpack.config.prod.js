@@ -1,13 +1,14 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const path = require('path');
 module.exports = {
     entry:{
         bundle:['babel-polyfill','./src/app.js','./src/scss/style.scss'],
         notipoix3:['./src/scss/react-notipoix3.scss']
     },
     output:{
-        path:'/dist',
+        path:path.resolve(__dirname + '/dist'),
         filename:'[name].js',
         publicPath:'/'
     },
@@ -34,19 +35,19 @@ module.exports = {
             },
             {
                 test:/\.scss$/,
-                use: [{
-                    loader: "style-loader"
-                }, {
-                    loader: "css-loader"
-                }, {
-                    loader: "sass-loader"
-                }]
+                use:ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader!sass-loader'
+                })
             }
         ]
     },
     plugins:[
-        new webpack.HotModuleReplacementPlugin(),
-        new LodashModuleReplacementPlugin()
+        new webpack.optimize.ModuleConcatenationPlugin(),
+        new LodashModuleReplacementPlugin(),
+        new ExtractTextPlugin({
+            filename: '[name].css',
+        })
     ],  
     resolve:{
         modules:['node_modules'],
